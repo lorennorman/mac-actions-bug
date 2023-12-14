@@ -1,0 +1,25 @@
+name: Demonstrate Bug
+
+on:
+  workflow_dispatch:
+
+jobs:
+  do_linux:
+    name: Linux $GITHUB_PATH works between steps
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "echo 'I am working.'" >> works.sh
+        chmod +x works.sh
+        ./works.sh
+    - run: ./works.sh
+
+  do_mac:
+    name: macOS $GITHUB_PATH doesn't work between steps
+    runs-on: macos-latest
+    steps:
+    - run: |
+        echo "echo 'I am working.'" >> works.sh
+        chmod +x works.sh
+        ./works.sh
+    - run: ./works.sh
