@@ -6,7 +6,7 @@ on:
 
 jobs:
   do_linux:
-    name: Linux $GITHUB_PATH works between steps
+    name: Linux $GITHUB_PATH modifies $PATH
     runs-on: ubuntu-latest
     steps:
     - run: |
@@ -21,7 +21,7 @@ jobs:
     - run: works.sh
 
   do_mac:
-    name: macOS $GITHUB_PATH doesn't work between steps
+    name: macOS $GITHUB_PATH doesn't modify $PATH
     runs-on: macos-latest
     steps:
     - run: |
