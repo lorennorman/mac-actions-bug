@@ -2,6 +2,7 @@ name: Demonstrate Bug
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   do_linux:
@@ -14,7 +15,7 @@ jobs:
         echo "echo 'I am working.'" >> ~/.local/bin/works.sh
         chmod +x ~/.local/bin/works.sh
 
-        ./works.sh
+        ~/.local/bin/works.sh
         works.sh
 
     - run: works.sh
@@ -29,7 +30,7 @@ jobs:
         echo "echo 'I am working.'" >> ~/.local/bin/works.sh
         chmod +x ~/.local/bin/works.sh
 
-        ./works.sh
+        ~/.local/bin/works.sh
         works.sh
 
     - run: works.sh
