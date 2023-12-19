@@ -12,6 +12,7 @@ jobs:
 
     name: Test $GITHUB_PATH modifies $PATH on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}-latest
+    shell: bash
     steps:
     - run: |
         mkdir -p ~/.local/bin
