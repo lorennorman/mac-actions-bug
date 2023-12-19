@@ -5,24 +5,13 @@ on:
   push:
 
 jobs:
-  do_linux:
-    name: Linux $GITHUB_PATH modifies $PATH
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        mkdir -p ~/.local/bin
-        echo "~/.local/bin" >> $GITHUB_PATH
-        echo "echo 'I am working.'" >> ~/.local/bin/works.sh
-        chmod +x ~/.local/bin/works.sh
+  test_github_path:
+    strategy:
+      matrix:
+        os: [ ubuntu, macos, windows ]
 
-        ~/.local/bin/works.sh
-        works.sh
-
-    - run: works.sh
-
-  do_mac:
-    name: macOS $GITHUB_PATH doesn't modify $PATH
-    runs-on: macos-latest
+    name: Test $GITHUB_PATH modifies $PATH on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-latest
     steps:
     - run: |
         mkdir -p ~/.local/bin
