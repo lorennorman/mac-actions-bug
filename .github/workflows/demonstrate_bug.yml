@@ -16,15 +16,31 @@ jobs:
     steps:
     - shell: bash
       run: |
-        echo "PATH BEFORE: ${PATH}"
+        # create a new bin path
         mkdir -p ~/.local/bin
-        echo "~/.local/bin" >> $GITHUB_PATH
+        # make an script that prints "I am working." when it works
         echo "echo 'I am working.'" >> ~/.local/bin/works.sh
+        # make the script executable
         chmod +x ~/.local/bin/works.sh
-        echo "PATH AFTER: ${PATH}"
 
+        # examine the path before
+        echo "PATH BEFORE:"
+        echo ${PATH}
+
+        # add to the $PATH according to github docs
+        echo "~/.local/bin" >> $GITHUB_PATH
+
+        # examine the path after
+        echo "PATH AFTER:"
+        echo ${PATH}
+
+        # run fully qualified
         ~/.local/bin/works.sh
+
+        # run via $PATH
         works.sh
 
     - shell: bash
-      run: works.sh
+      run: |
+        # run via $PATH in subsequent step
+        works.sh
