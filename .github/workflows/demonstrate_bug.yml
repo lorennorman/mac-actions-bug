@@ -15,10 +15,12 @@ jobs:
     steps:
     - shell: bash
       run: |
+        echo "PATH BEFORE: ${PATH}"
         mkdir -p ~/.local/bin
         echo "~/.local/bin" >> $GITHUB_PATH
         echo "echo 'I am working.'" >> ~/.local/bin/works.sh
         chmod +x ~/.local/bin/works.sh
+        echo "PATH AFTER: ${PATH}"
 
         ~/.local/bin/works.sh
         works.sh
