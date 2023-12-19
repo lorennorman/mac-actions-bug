@@ -16,6 +16,7 @@ jobs:
     steps:
     - shell: bash
       run: |
+
         # create a new bin path
         mkdir -p $HOME/.local/bin
         # make an script that prints "I am working." when it works
@@ -38,9 +39,16 @@ jobs:
         $HOME/.local/bin/works.sh
 
         # run via $PATH
-        works.sh
+        # works.sh
 
     - shell: bash
       run: |
+
+        echo "PATH IN NEXT STEP:"
+        echo ${PATH}
+
+        # runn fully qualified in next step
+        $HOME/.local/bin/works.sh
+
         # run via $PATH in subsequent step
         works.sh
